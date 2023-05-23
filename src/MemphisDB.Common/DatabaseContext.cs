@@ -1,11 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Sqlite;
+using System.IO;
 
 namespace MemphisDB.Common
 {
     public class DatabaseContext : DbContext
     {
-        public DatabaseContext() { }
+        public string DbPath { get; }
+
+        public DatabaseContext() 
+        {
+            var dir = Environment.SpecialFolder.LocalApplicationData;
+            var path = Environment.GetFolderPath(dir);
+            DbPath = Path.Join(path, "memphis.db");
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
