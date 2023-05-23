@@ -17,7 +17,7 @@ namespace MemphisDB.Common
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(@"Data Source=" + Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\memphis.db");
+            optionsBuilder.UseSqlite($"Data Source={DbPath}");
         }
 
         public DbSet<Machine> Machines { get; set; }
